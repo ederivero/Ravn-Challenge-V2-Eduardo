@@ -6,8 +6,8 @@ class PeopleAPI extends RESTDataSource {
         super();
         this.baseURL = 'http://swapi.dev/api/';
     }
-    async getAllPeople({page}) {
-        const response = await this.get('people/?page='+page);
+    async getAllPeople({ page }) {
+        const response = await this.get('people/?page=' + page);
         let results = Array.isArray(response.results) ? response.results.map(person => this.personReducer(person)) : [];
         // after all people return and concatenate in variable results, it's time to search his races and his vehicles to how 
         for (const keyMain in results) {
@@ -20,11 +20,11 @@ class PeopleAPI extends RESTDataSource {
                 results[keyMain].species[keySpecies] = await this.get(speciesURL);
             }
         }
-        response.results=results;
+        response.results = results;
         return response;
-    }    
-    async getPeopleById({peopleId}){
-        const response = await this.get('people/'+peopleId)
+    }
+    async getPeopleById({ peopleId }) {
+        const response = await this.get('people/' + peopleId)
         // and for the vehicles
         for (const keyVehicles in response.vehicles) {
             let vehiclesURL = response.vehicles[keyVehicles].split(this.baseURL)[1];
@@ -32,16 +32,16 @@ class PeopleAPI extends RESTDataSource {
         }
         return this.personReducer(response);
     }
-    personReducer(person){
+    personReducer(person) {
         let idPerson = person.url.split('/')[5];
         return {
             id: idPerson,
             name: person.name,
             hair_color: person.hair_color,
-            eye_color : person.eye_color,
+            eye_color: person.eye_color,
             skin_color: person.skin_color,
             birth_year: person.birth_year,
-            homeworld : person.homeworld,
+            homeworld: person.homeworld,
             species: person.species,
             vehicles: person.vehicles
         }
