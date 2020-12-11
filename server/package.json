@@ -1,0 +1,26 @@
+{
+  "name": "client-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource": "^0.7.2",
+    "apollo-datasource-rest": "^0.9.5",
+    "apollo-server": "^2.19.0",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.4.0",
+    "nodemon": "^1.18.4"
+  },
+  "devDependencies": {
+    "apollo-link": "^1.2.3",
+    "apollo-link-http": "^1.5.5",
+    "nock": "^10.0.2",
+    "node-fetch": "^2.2.1"
+  }
+}
